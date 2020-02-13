@@ -1,18 +1,13 @@
+import React from 'react';
+import Table from './pages/Table/index'
 
-import React, { Component } from 'react';
-import Table from './components/Table'
-import Employees from './employees'
-
-
-function App() {
-
+const App = () => {
+  document.title = "Employee Directory";
   return (
-    <>
-
-        <Table Employees={Employees} />
-
-    </>
+      <>
+         <Table />     
+      </>
   );
-}
+};
 
 export default App;
