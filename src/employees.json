@@ -1,4 +1,4 @@
-const DB = [
+[
     {
        "id": 1,
        "first": "Michael", 
@@ -71,6 +71,4 @@ const DB = [
         "last": "De la Sol",
         "department": 7
      }
-  ];
-
-  export default DB;
+  ]
