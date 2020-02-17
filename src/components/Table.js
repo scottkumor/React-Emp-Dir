@@ -1,90 +1,154 @@
 import React, { Component } from "react";
 
-function Table(props) {
-  return (
+class Table extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      filtered: []
+    }
+    this.handleChangeFirst = this.handleChangeFirst.bind(this);
+    this.handleChangeLast = this.handleChangeLast.bind(this);
+    this.handleChangeDept = this.handleChangeDept.bind(this);
+  }
 
-    <table>
-      <tbody>
-        <tr>
-          <td > {props.id} </td>
-          <td > {props.first} </td>
-          <td > {props.last} </td>
-          <td > {props.department} </td>
-        </tr>
-      </tbody>
-    </table>
-  )
+  componentDidMount() {
+    this.setState({
+      filtered: this.props.employees
+    });
+  }
+
+  handleChangeFirst(e) {
+    // Variable to hold the original version of the list
+    let currentList = [];
+    // Variable to hold the filtered list before putting into state
+    let newList = [];
+
+    // If the search bar isn't empty
+    if (e.target.value !== "") {
+      // Assign the original list to currentList
+      currentList = this.props.employees;
+
+      // Use .filter() to determine which employees should be displayed
+      // based on the search terms
+      newList = currentList.filter(employee => {
+        // change current employee to lowercase
+        const lc = employee.first.toString().toLowerCase();
+        // change search term to lowercase
+        const filter = e.target.value.toString().toLowerCase();
+        // check to see if the current list employee includes the search term
+        // If it does, it will be added to newList. Using lowercase eliminates
+        // issues with capitalization in search terms and search content
+        return lc.includes(filter);
+      });
+    } else {
+      // If the search bar is empty, set newList to original task list
+      newList = this.props.employees;
+    }
+    // Set the filtered state based on what our rules added to newList
+    this.setState({
+      filtered: newList
+    });
+  }
+
+  handleChangeLast(e) {
+    // Variable to hold the original version of the list
+    let currentList = [];
+    // Variable to hold the filtered list before putting into state
+    let newList = [];
+
+    // If the search bar isn't empty
+    if (e.target.value !== "") {
+      // Assign the original list to currentList
+      currentList = this.props.employees;
+
+      // Use .filter() to determine which employees should be displayed
+      // based on the search terms
+      newList = currentList.filter(employee => {
+        // change current employee to lowercase
+        const lc = employee.last.toString().toLowerCase();
+        // change search term to lowercase
+        const filter = e.target.value.toString().toLowerCase();
+        // check to see if the current list employee includes the search term
+        // If it does, it will be added to newList. Using lowercase eliminates
+        // issues with capitalization in search terms and search content
+        return lc.includes(filter);
+      });
+    } else {
+      // If the search bar is empty, set newList to original task list
+      newList = this.props.employees;
+    }
+    // Set the filtered state based on what our rules added to newList
+    this.setState({
+      filtered: newList
+    });
+  }
+  
+  handleChangeDept(e) {
+    // Variable to hold the original version of the list
+    let currentList = [];
+    // Variable to hold the filtered list before putting into state
+    let newList = [];
+
+    // If the search bar isn't empty
+    if (e.target.value !== "") {
+      // Assign the original list to currentList
+      currentList = this.props.employees;
+
+      // Use .filter() to determine which employees should be displayed
+      // based on the search terms
+      newList = currentList.filter(employee => {
+        // change current employee to lowercase
+        const lc = employee.department.toString().toLowerCase();
+        // change search term to lowercase
+        const filter = e.target.value.toString().toLowerCase();
+        // check to see if the current list employee includes the search term
+        // If it does, it will be added to newList. Using lowercase eliminates
+        // issues with capitalization in search terms and search content
+        return lc.includes(filter);
+      });
+    } else {
+      // If the search bar is empty, set newList to original task list
+      newList = this.props.employees;
+    }
+    // Set the filtered state based on what our rules added to newList
+    this.setState({
+      filtered: newList
+    });
+  }
+
+
+
+  render() {
+    return (
+      <div>
+        <input type="text" onChange={this.handleChangeFirst} placeholder="Search by First Name..." />
+        <input type="text" onChange={this.handleChangeLast} placeholder="Search by Last Name..." />
+        <input type="text" onChange={this.handleChangeDept} placeholder="Search by Department..." />
+        <table>
+        <thead>
+            <tr>
+              <th>ID</th>
+              <th>First Name</th>
+              <th>Last Name</th>
+              <th>Department</th>
+            </tr>
+          </thead>
+          <tbody>
+            {
+              this.state.filtered.map(employee => (
+                <tr>
+                  <td>{employee.id}</td>
+                  <td>{employee.first}</td>
+                  <td>{employee.last}</td>
+                  <td>{employee.department}</td>
+                </tr>
+              ))
+            }
+          </tbody>
+        </table>
+      </div>
+    )
+  }
 }
 
 export default Table;
-
-
-
-// handleInputChange = event => {
-//   // Getting the value and name of the input which triggered the change
-//   let value = event.target.value;
-//   const name = event.target.name;
-
-//   if (name === "password") {
-//     value = value.substring(0, 15);
-//   }
-//   // Updating the input's state
-//   this.setState({
-//     [name]: value
-//   });
-// };
-
-// return (
-//   <div className="card">
-//     <div className="img-container">
-//       <img alt={props.name} src={props.image} />
-//     </div>
-//     <div className="content">
-//       <ul>
-//         <li>
-//           <strong>Name:</strong> {props.name}
-//         </li>
-//         <li>
-//           <strong>Occupation:</strong> {props.occupation}
-//         </li>
-//         <li>
-//           <strong>Location:</strong> {props.location}
-//         </li>
-//       </ul>
-//     </div>
-//     <span onClick={() => props.removeFriend(props.id)} className="remove">
-//       𝘅
-//     </span>
-//   </div>
-// );
-
-// class Table extends Component {
-
-//   state = {
-//     employees
-//   };
-
-//   // When the component mounts, render table
-//   // componentDidMount() {
-
-//   // }
-
-//   handleInputChange = event => {
-//     this.setState({ employees: event.target.value });
-//   };
-
-//   render() {
-//     return (
-//       <Wrapper>
-//         {this.state.employees.map(employee => (
-//           <Table
-//             id={employees.id}
-//             key={employees.id}
-//             first={employees.name}
-//             last={employees.image}
-//             department={employees.department}
-//           />
-//         ))}
-//       </Wrapper>
-//     );
-//   }
