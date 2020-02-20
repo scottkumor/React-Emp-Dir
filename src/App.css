@@ -1,0 +1,34 @@
+  
+
+    tr:nth-child(even) {background-color: papayawhip;}
+
+    table, th, td {
+        text-align: center; 
+        border: solid;
+        padding: 1%;
+        border-collapse: collapse;
+        margin: 2%;
+        font-size: large;
+    }
+
+    input {
+        margin: 1%;
+        font-size: large;
+        background-color: papayawhip;
+        margin: 1%;
+    }
+
+    body {
+        background-color: peachpuff;
+        background: cover;
+        justify-content: center;
+        margin: 1%;
+    }
+    
+    #inputs {
+        display: flex;
+        flex-direction: column;
+        width: 20%;
+        margin: 1%;
+    }
+    

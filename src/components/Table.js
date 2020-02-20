@@ -116,14 +116,14 @@ class Table extends Component {
     });
   }
 
-
-
   render() {
     return (
       <div>
-        <input type="text" onChange={this.handleChangeFirst} placeholder="Search by First Name..." />
-        <input type="text" onChange={this.handleChangeLast} placeholder="Search by Last Name..." />
-        <input type="text" onChange={this.handleChangeDept} placeholder="Search by Department..." />
+        <section id="inputs">
+          <input type="text" onChange={this.handleChangeFirst} placeholder="Search by First Name..." />
+          <input type="text" onChange={this.handleChangeLast} placeholder="Search by Last Name..." />
+          <input type="text" onChange={this.handleChangeDept} placeholder="Search by Department..." />
+        
         <table>
         <thead>
             <tr>
@@ -146,6 +146,7 @@ class Table extends Component {
             }
           </tbody>
         </table>
+        </section>
       </div>
     )
   }

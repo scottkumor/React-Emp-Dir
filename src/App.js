@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import Table from './components/Table';
+import './App.css';
+
 
 class App extends Component {
 
@@ -86,11 +88,12 @@ class App extends Component {
 
   render() {
     return (
-      <>
+      <section>
         <h1>Employee Directory</h1>
         <h2>Please choose one category to search by.</h2>
+        <p>Searching with multiple fields may not yield desired results.</p>
         <Table employees={this.state.employees} />
-      </>
+      </section>
     );
   }
 }
